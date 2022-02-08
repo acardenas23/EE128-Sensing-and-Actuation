@@ -1,0 +1,11 @@
+18:08:28 **** Incremental Build of configuration Debug for project Lab_4 ****
+make all 
+Building target: Lab_4.elf
+Invoking: Cross ARM C++ Linker
+arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -Wall  -g3 -T "MK64FN1M0xxx12_flash.ld" -Xlinker --gc-sections -L"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Lab_4/Project_Settings/Linker_Files" -Wl,-Map,"Lab_4.map" -specs=nosys.specs -specs=nano.specs -Xlinker -z -Xlinker muldefs -o "Lab_4.elf"  ./Sources/main\ (2).o ./Sources/main.o  ./Project_Settings/Startup_Code/startup.o ./Project_Settings/Startup_Code/startup_MK64F12.o ./Project_Settings/Startup_Code/system_MK64F12.o   
+c:/freescale/kds_v3/eclipse/../bin/sh: syntax error: unexpected "("
+makefile:55: recipe for target 'Lab_4.elf' failed
+make: *** [Lab_4.elf] Error 2
+
+18:08:28 Build Finished (took 381ms)
+

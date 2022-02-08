@@ -1,0 +1,21 @@
+23:25:20 **** Incremental Build of configuration Debug for project mini_project_v1 ****
+make all 
+Building file: ../Sources/main.c
+Invoking: Cross ARM C Compiler
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -Wall  -g3 -D"CPU_MK64FN1M0VMD12" -I"../Sources" -I"../Project_Settings/Startup_Code" -I"../SDK/platform/CMSIS/Include" -I"../SDK/platform/devices" -I"../SDK/platform/devices/MK64F12/include" -std=c99 -MMD -MP -MF"Sources/main.d" -MT"Sources/main.o" -c -o "Sources/main.o" "../Sources/main.c"
+Finished building: ../Sources/main.c
+ 
+Building target: mini_project_v1.elf
+Invoking: Cross ARM C++ Linker
+arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -Wall  -g3 -T "MK64FN1M0xxx12_flash.ld" -Xlinker --gc-sections -L"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/mini_project_v1/Project_Settings/Linker_Files" -Wl,-Map,"mini_project_v1.map" -specs=nosys.specs -specs=nano.specs -Xlinker -z -Xlinker muldefs -o "mini_project_v1.elf"  ./Sources/main.o  ./Project_Settings/Startup_Code/startup.o ./Project_Settings/Startup_Code/startup_MK64F12.o ./Project_Settings/Startup_Code/system_MK64F12.o   
+Finished building target: mini_project_v1.elf
+ 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "mini_project_v1.elf"
+   text	   data	    bss	    dec	    hex	filename
+   2408	    108	   2096	   4612	   1204	mini_project_v1.elf
+Finished building: mini_project_v1.siz
+ 
+
+23:25:21 Build Finished (took 1s.59ms)
+

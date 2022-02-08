@@ -1,0 +1,163 @@
+/*
+ * Copyright (c) 2015, Freescale Semiconductor, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * o Redistributions of source code must retain the above copyright notice, this list
+ *   of conditions and the following disclaimer.
+ *
+ * o Redistributions in binary form must reproduce the above copyright notice, this
+ *   list of conditions and the following disclaimer in the documentation and/or
+ *   other materials provided with the distribution.
+ *
+ * o Neither the name of Freescale Semiconductor, Inc. nor the names of its
+ *   contributors may be used to endorse or promote products derived from this
+ *   software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#include "fsl_device_registers.h"
+
+unsigned short ADC0_read16b(void);
+unsigned short ADC1_read16b(void);
+void PORTA_IRQHandler(void);
+void Servo_move(void);
+
+unsigned int photo1 = 0;
+unsigned int photo2 = 0;
+
+int main(void)
+{
+
+    /* Write your code here */
+	/*PESUDOCODE:
+	 * Need 1 pin for servo motor
+	 * Need 2 pins for ADC input
+	 *
+	 *Read 2 ADC input values
+	 */
+	//SIM_SCGC6 |= SIM_SCGC6_ADC0_MASK;  // 0x8000000u; Enable ADC0 Clock
+	//SIM_SCGC6 |= SIM_SCGC6_ADC1_MASK;
+	SIM_SCGC5 |= SIM_SCGC5_PORTC_MASK; //Port C Clock Enable
+	SIM_SCGC3 |= SIM_SCGC3_FTM3_MASK; //FTM3 clock enable
+
+//	ADC0_CFG1 = 0x0C; //Configure ADC for 16 bits, and to use bus clock.
+//	ADC0_SC1A = 0x1F; //Disable the ADC module;
+//	ADC1_CFG1 = 0x0C; //Configure ADC for 16 bits, and to use bus clock.
+//	ADC1_SC1A = 0x1F; //Disable the ADC module;
+
+	PORTC_PCR10 = 0x300; //PORT C Pin 10 as FTM3_CH6 (ALT3)
+	FTM3_MODE = 0x5; //Enable FTM3
+	FTM3_MOD = 0xFFFF;
+	FTM3_SC = 0x0D; //System clock / 64
+
+	//20ms period
+	//50Hz period
+	/*Generate 50Hz waveform with 1-2ms Duty Cycle
+	 *PTC10 pin
+	 *PTC10 System clock is 21MHz
+	 *Set Prescaler to 64 -> 1 timer tick duration
+	 *1 sec / (21MHz / 64) = 3us
+	 *# of ticks that the output signal are high and low
+	 *HIGH for 1ms -> 1000/3 = 333
+	 *HIGH for 2ms -> 2000/3 = 666
+	 *LOW for 18ms -> 18000/3 = 6000
+	 *LOW for 19ms -> 19000/3 = 6333
+	 *Low+HIGH = 6666
+	*/
+
+	/*
+	 * 6166 LOW + 500 HIGH = 2
+	 * 6000 LOW + 666 HIGH
+	 * 6333 LOW + 300 HIGH = middle
+	 * */
+
+
+	int i = 0;
+	int low = 6500;
+	int high = 300;
+
+	while (1) {
+		FTM3_C6SC = 0x1C; // Output-compare; Set output
+		FTM3_C6V = FTM3_CNT + 6500; // 18ms LOW
+		while(!(FTM3_C6SC & 0x80));
+		FTM3_C6SC &= ~(1 << 7);
+
+		FTM3_C6SC = 0x18; // Output-compare; Clear output
+		FTM3_C6V = FTM3_CNT + 300; // 1-2ms HIGH
+		while(!(FTM3_C6SC & 0x80));
+		FTM3_C6SC &= ~(1 << 7);
+		for (int i = 0; i < 10000; i++); // S/W Delay
+
+		for(i = 0; i <= 60; ++i)
+		{
+			FTM3_C6SC = 0x1C; // Output-compare; Set output
+			FTM3_C6V = FTM3_CNT + low;
+			while(!(FTM3_C6SC & 0x80));
+			FTM3_C6SC &= ~(1 << 7);
+
+			FTM3_C6SC = 0x18; // Output-compare; Clear output
+			FTM3_C6V = FTM3_CNT + high; // 1-2ms HIGH
+			while(!(FTM3_C6SC & 0x80));
+			FTM3_C6SC &= ~(1 << 7);
+			for (int i = 0; i < 10000; i++); // S/W Delay
+
+			low -=20;
+			high +=20;
+			for (int i = 0; i < 50000; i++); // S/W Delay
+
+		}
+	}
+
+    return 0;
+}
+
+
+
+
+void Servo_move(void)
+{
+	//code
+}
+
+
+
+//unsigned short ADC0_read16b(void)
+//{
+//	ADC0_SC1A = 0x1A; //Write to SC1A to start conversion from ADC_0
+//	while(ADC0_SC2 & ADC_SC2_ADACT_MASK); //Conversion in progress
+//	while(!(ADC0_SC1A & ADC_SC1_COCO_MASK)); //until conversion completes
+//	return ADC0_RA;
+//}
+//
+//unsigned short ADC1_read16b(void)
+//{
+//	ADC1_SC1A = 0x1A; //Write to SC1A to start conversion from ADC_0
+//	while(ADC1_SC2 & ADC_SC2_ADACT_MASK); //Conversion in progress
+//	while(!(ADC1_SC1A & ADC_SC1_COCO_MASK)); //until conversion completes
+//	return ADC1_RA;
+//}
+//
+//void PORTA_IRQHandler(void){
+//	NVIC_ClearPendingIRQ(PORTA_IRQn); //Clear pending Interrupt
+//
+//	photo1 = (unsigned int)ADC0_read16b();
+//	photo2 = (unsigned int)ADC1_read16b();
+//
+//}
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

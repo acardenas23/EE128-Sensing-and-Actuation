@@ -1,0 +1,33 @@
+12:01:48 **** Incremental Build of configuration Debug for project Mini_project_LCD ****
+make all 
+Building file: ../Static_Code/System/Vectors.c
+Invoking: Cross ARM C Compiler
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Static_Code/System" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Static_Code/PDD" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Static_Code/IO_Map" -I"C:\Freescale\KDS_v3\eclipse\ProcessorExpert/lib/Kinetis/pdd/inc" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Sources" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Generated_Code" -std=c99 -MMD -MP -MF"Static_Code/System/Vectors.d" -MT"Static_Code/System/Vectors.o" -c -o "Static_Code/System/Vectors.o" "../Static_Code/System/Vectors.c"
+Finished building: ../Static_Code/System/Vectors.c
+ 
+Building file: ../Static_Code/System/CPU_Init.c
+Invoking: Cross ARM C Compiler
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Static_Code/System" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Static_Code/PDD" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Static_Code/IO_Map" -I"C:\Freescale\KDS_v3\eclipse\ProcessorExpert/lib/Kinetis/pdd/inc" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Sources" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Generated_Code" -std=c99 -MMD -MP -MF"Static_Code/System/CPU_Init.d" -MT"Static_Code/System/CPU_Init.o" -c -o "Static_Code/System/CPU_Init.o" "../Static_Code/System/CPU_Init.c"
+Finished building: ../Static_Code/System/CPU_Init.c
+ 
+Building file: ../Static_Code/System/Peripherals_Init.c
+Invoking: Cross ARM C Compiler
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Static_Code/System" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Static_Code/PDD" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Static_Code/IO_Map" -I"C:\Freescale\KDS_v3\eclipse\ProcessorExpert/lib/Kinetis/pdd/inc" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Sources" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Generated_Code" -std=c99 -MMD -MP -MF"Static_Code/System/Peripherals_Init.d" -MT"Static_Code/System/Peripherals_Init.o" -c -o "Static_Code/System/Peripherals_Init.o" "../Static_Code/System/Peripherals_Init.c"
+Finished building: ../Static_Code/System/Peripherals_Init.c
+ 
+Building file: ../Sources/Events.c
+Invoking: Cross ARM C Compiler
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Static_Code/System" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Static_Code/PDD" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Static_Code/IO_Map" -I"C:\Freescale\KDS_v3\eclipse\ProcessorExpert/lib/Kinetis/pdd/inc" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Sources" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Generated_Code" -std=c99 -MMD -MP -MF"Sources/Events.d" -MT"Sources/Events.o" -c -o "Sources/Events.o" "../Sources/Events.c"
+Finished building: ../Sources/Events.c
+ 
+Building file: ../Sources/main.c
+Invoking: Cross ARM C Compiler
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Static_Code/System" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Static_Code/PDD" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Static_Code/IO_Map" -I"C:\Freescale\KDS_v3\eclipse\ProcessorExpert/lib/Kinetis/pdd/inc" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Sources" -I"C:/Users/acard/OneDrive - email.ucr.edu/UCR/Fall 2021/EE128/Mini_project_LCD/Generated_Code" -std=c99 -MMD -MP -MF"Sources/main.d" -MT"Sources/main.o" -c -o "Sources/main.o" "../Sources/main.c"
+../Sources/main.c:176:1: error: expected identifier or '(' before '}' token
+ }
+ ^
+make: *** [Sources/main.o] Error 1
+Sources/subdir.mk:21: recipe for target 'Sources/main.o' failed
+
+12:01:49 Build Finished (took 1s.349ms)
+
